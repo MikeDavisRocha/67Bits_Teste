@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class CharacterPunch : MonoBehaviour
@@ -14,6 +15,9 @@ public class CharacterPunch : MonoBehaviour
             other.GetComponent<Rigidbody>().AddForce(punchDirection * punchForce, ForceMode.Impulse);
 
             // Play the punch animation
+            animator.SetLayerWeight(1, 1);
+
+            // Start the punch animation
             animator.SetTrigger("Punch");
 
             // Deactivate Enemy Animator
