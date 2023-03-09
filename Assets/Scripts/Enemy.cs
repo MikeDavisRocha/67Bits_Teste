@@ -16,7 +16,7 @@ public class Enemy : MonoBehaviour
 
     private IEnumerator StackEnemyCoroutine()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1.5f);
 
         gameObject.SetActive(false);
         GameObject deadEnemy = Instantiate(_deadEnemyPrefab, _backpackTransform);        
