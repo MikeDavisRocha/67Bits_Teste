@@ -38,4 +38,9 @@ public class Enemy : MonoBehaviour
     {
         return new Vector3(enemyPosition.x, enemyPosition.y + _increment, enemyPosition.z);
     }
+
+    public int GetNumberOfDefeatedEnemies()
+    {
+        return _backpackTransform.childCount;
+    }
 }

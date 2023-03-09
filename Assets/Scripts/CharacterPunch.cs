@@ -11,20 +11,43 @@ public class CharacterPunch : MonoBehaviour
         {
             Enemy enemy = other.GetComponent<Enemy>();            
 
-            // Play the punch animation
-            animator.SetLayerWeight(1, 1);
-            animator.SetTrigger("Punch");
-
-            // Deactivate Enemy Animator
-            Animator enemyAnimator = enemy.GetComponent<Animator>();
-            
-            if (enemyAnimator != null)
+            if (enemy.GetNumberOfDefeatedEnemies() < PlayerStats.Instance.GetMaxStackLevel())
             {
-                enemyAnimator.enabled = false;
+                // Play the punch animation
+                animator.SetLayerWeight(1, 1);
+                animator.SetTrigger("Punch");
+
+                // Deactivate Enemy Animator
+                Animator enemyAnimator = enemy.GetComponent<Animator>();
+            
+                if (enemyAnimator != null)
+                {
+                    enemyAnimator.enabled = false;
+                }
+
+                // Stack defeated enemy on player back
+                enemy.StackEnemy();
             }
 
-            // Stack defeated enemy on player back
-            enemy.StackEnemy();
+        }
+        else if (other.CompareTag("MoneyController"))
+        {
+            MoneyController moneyController = other.GetComponent<MoneyController>();
+
+            if (moneyController != null)
+            {
+                moneyController.GiveMoney();
+            }
+        }
+        else if (other.CompareTag("LevelUpController"))
+        {
+            LevelUpController levelUpController = other.GetComponent<LevelUpController>();
+
+            if (levelUpController != null)
+            {
+                SkinnedMeshRenderer skinnedMeshRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
+                levelUpController.LevelUp(skinnedMeshRenderer);
+            }
         }
     }
 }
