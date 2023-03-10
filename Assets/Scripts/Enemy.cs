@@ -16,10 +16,10 @@ public class Enemy : MonoBehaviour
 
     private IEnumerator StackEnemyCoroutine()
     {
-        yield return new WaitForSeconds(1.5f);
-
-        gameObject.SetActive(false);
+        yield return new WaitForSeconds(2.5f);
         GameObject deadEnemy = Instantiate(_deadEnemyPrefab, _backpackTransform);        
+        gameObject.SetActive(false);
+        
         if (_backpackTransform.childCount == 1)
         {
             deadEnemy.GetComponent<ConfigurableJoint>().connectedBody = _initialDeadEnemyPrefab.GetComponent<Rigidbody>();
@@ -37,10 +37,5 @@ public class Enemy : MonoBehaviour
     private Vector3 SetDeadEnemyPosition(Vector3 enemyPosition)
     {
         return new Vector3(enemyPosition.x, enemyPosition.y + _increment, enemyPosition.z);
-    }
-
-    public int GetNumberOfDefeatedEnemies()
-    {
-        return _backpackTransform.childCount;
     }
 }

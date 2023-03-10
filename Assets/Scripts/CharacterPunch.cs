@@ -9,10 +9,11 @@ public class CharacterPunch : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
-            Enemy enemy = other.GetComponent<Enemy>();            
-
-            if (enemy.GetNumberOfDefeatedEnemies() < PlayerStats.Instance.GetMaxStackLevel())
+            Enemy enemy = other.GetComponent<Enemy>();
+            
+            if (PlayerStats.Instance.GetStackLevel() < PlayerStats.Instance.GetMaxStackLevel())
             {
+                PlayerStats.Instance.AddStackLevel(1);
                 // Play the punch animation
                 animator.SetLayerWeight(1, 1);
                 animator.SetTrigger("Punch");

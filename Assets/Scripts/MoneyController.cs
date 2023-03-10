@@ -15,6 +15,8 @@ public class MoneyController : MonoBehaviour
         // Add the money to the player's account
         PlayerStats.Instance.AddMoney(moneyEarned);
 
+        PlayerStats.Instance.ResetStackLevel();
+
         UpdateMoneyText();
 
         // Remove the defeated enemies

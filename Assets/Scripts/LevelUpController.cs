@@ -27,7 +27,7 @@ public class LevelUpController : MonoBehaviour
             PlayerStats.Instance.DeductMoney(requiredMoneyPerLevel);            
 
             // Increase the stack level
-            PlayerStats.Instance.AddStackLevel(stackLevelAmount);
+            PlayerStats.Instance.IncreaseMaxStackLevel(stackLevelAmount);
 
             // Update the level amount text
             UpdateLevelText();
